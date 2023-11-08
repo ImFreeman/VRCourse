@@ -1,7 +1,8 @@
-namespace VR_Builder_extentsion.FloatPropertyTransition
+using UnityEngine;
+using VR_Builder_extentsion;
+
+[RequireComponent(typeof(IValuePresenter<float>))]
+public class FloatValueProperty : ValueProperty<float>
 {
-    public class FloatValueProperty
-    {
         
-    }
 }
