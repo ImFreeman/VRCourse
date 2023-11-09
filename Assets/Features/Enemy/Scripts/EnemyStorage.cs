@@ -35,7 +35,8 @@ public class EnemyStorage : MonoBehaviour
 
     public void Clear()
     {
-        foreach (var key in _dictionary.Keys)
+        var keys = new List<int>(_dictionary.Keys);
+        foreach (var key in keys)
         {
             DeleteEnemy(key);
         }

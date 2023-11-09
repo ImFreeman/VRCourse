@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,14 @@ public class GrabHandPose : MonoBehaviour
     private Vector3 finalHandPosition;
     private Quaternion startingHandRotation;
     private Quaternion finalHandRotation;
+    private XRGrabInteractable grabInteractable;
 
     private Quaternion[] startingFingerRotations;
     private Quaternion[] finalFingerRotations;
     
-    void Start()
+    void OnEnable()
     {
-        XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.selectEntered.AddListener(SetupPose);
         grabInteractable.selectExited.AddListener(UnSetupPose);
         rightHandpose.gameObject.SetActive(false);
@@ -71,5 +73,11 @@ public class GrabHandPose : MonoBehaviour
         {
             h.FingerBones[i].localRotation = newBonesRotation[i];
         }
+    }
+
+    private void OnDisable()
+    {
+        grabInteractable.selectEntered.RemoveListener(SetupPose);
+        grabInteractable.selectExited.RemoveListener(UnSetupPose);
     }
 }

@@ -12,6 +12,7 @@ public class WeaponView : MonoBehaviour
     
     private void OnEnable()
     {
+        _renderer.positionCount = 2;
         _grab.activated.AddListener(OnGunActivated);
     }
 
@@ -29,6 +30,7 @@ public class WeaponView : MonoBehaviour
             if (enemy != null)
             {
                 EnemyHitEvent?.Invoke(this, enemy.gameObject.GetInstanceID());
+                Debug.LogWarning($"Enemy hitted {enemy.gameObject.GetInstanceID()}");
             }
         }
     }

@@ -6,6 +6,7 @@ namespace Features.Enemy.Scripts
     public class EnemySystemStartup : MonoBehaviour
     {
         [SerializeField] private EnemyManager _manager;
+        [SerializeField] private EnemyStorage _storage;
         private void OnEnable()
         {
             _manager.StartSpawn();
@@ -14,6 +15,7 @@ namespace Features.Enemy.Scripts
         private void OnDisable()
         {
             _manager.StopSpawn();
+            _storage.Clear();
         }
     }
 }
